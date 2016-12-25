@@ -1,0 +1,117 @@
+<resources>
+    <string name="app_name">Space Center</string>
+
+    <!-- Tabs titles -->
+
+    <string name="nasa_page_title">NASA\'S news</string>
+    <string name="solar_system_page_title">Solar System</string>
+    <string name="sounds_page_title">Space sounds (beta)</string>
+    <string name="esa_page_title">European Space Agency</string>
+    <string name="iss_page_title">International Space Station</string>
+    <string name="hubble_page_title">Hubble Space Telescope</string>
+    <string name="earth_page_title">NASA Earth</string>
+    <string name="apod_page_title">Astronomy Picture of the Day</string>
+
+    <!-- Planets titles and text -->
+
+    <string name="earth_title">Earth</string>
+    <string name="earth_info">Earth is the largest and densest of the inner planets, the only one
+        known to have current geological activity, and the only place where life is known to exist.
+         Its liquid hydrosphere is unique among the terrestrial planets, and it is the only planet where plate
+        tectonics has been observed. Earth\'s atmosphere is radically different from those of the other planets,
+        having been altered by the presence of life to contain 21% free oxygen.
+        It has one natural satellite, the Moon, the only large satellite of a terrestrial
+        planet in the Solar System.</string>
+
+    <string name="mercury_title">Mercury</string>
+    <string name="mercury_info">Mercury is the closest planet to the Sun and
+        the smallest planet in the Solar System (0.055 Earth masses). Mercury has no natural satellites;
+        besides impact craters, its only known geological features are lobed ridges or rupes that were
+        probably produced by a period of contraction early in its history.</string>
+
+    <string name="venus_title">Venus</string>
+    <string name="venus_info">Venus is close in size to Earth (0.815 Earth masses) and, like Earth,
+        has a thick silicate mantle around an iron core, a substantial atmosphere, and evidence of
+        internal geological activity. It is much drier than Earth, and its atmosphere is ninety times as dense.
+        Venus has no natural satellites. It is the hottest planet, with surface temperatures over 400 °C (752°F),
+        most likely due to the amount of greenhouse gases in the atmosphere.</string>
+
+    <string name="mars_title">Mars</string>
+    <string name="mars_info">Mars is smaller than Earth and Venus (0.107 Earth masses). It has an atmosphere
+        of mostly carbon dioxide with a surface pressure of 6.1 millibars (roughly 0.6% of that of Earth).
+        Its surface, peppered with vast volcanoes, such as Olympus Mons, and rift valleys, such as Valles Marineris,
+        shows geological activity that may have persisted until as recently as 2 million years ago.
+        Its red colour comes from iron oxide (rust) in its soil. Mars has two tiny natural satellites
+        (Deimos and Phobos) thought to be captured asteroids.</string>
+
+    <string name="jupiter_title">Jupiter</string>
+    <string name="jupiter_info">Jupiter, at 318 Earth masses, is 2.5 times the mass of all the other
+        planets put together. It is composed largely of hydrogen and helium. Jupiter\'s strong internal
+        heat creates semi-permanent features in its atmosphere, such as cloud bands and the Great Red Spot.
+        Jupiter has 67 known satellites. The four largest, Ganymede, Callisto, Io, and Europa, show similarities
+        to the terrestrial planets, such as volcanism and internal heating. Ganymede, the largest satellite
+        in the Solar System, is larger than Mercury.</string>
+
+    <string name="sun_title">Sun</string>
+    <string name="sun_info">The Sun is the Solar System\'s star and by far its most massive component. Its large mass (332,900 Earth masses) produces temperatures and densities in its core high enough to sustain nuclear fusion of hydrogen into helium, making it a main-sequence star. This releases an enormous amount of energy, mostly radiated into space as electromagnetic radiation peaking in visible light.</string>
+
+    <string name="saturn_title">Saturn</string>
+    <string name="saturn_info">Saturn (9.5 AU), distinguished by its extensive ring system, has several similarities to Jupiter, such as its atmospheric composition and magnetosphere. Although Saturn has 60% of Jupiter\'s volume, it is less than a third as massive, at 95 Earth masses. Saturn is the only planet of the Solar System that is less dense than water. The rings of Saturn are made up of small ice and rock particles. Saturn has 62 confirmed satellites composed largely of ice. Two of these, Titan and Enceladus, show signs of geological activity. Titan, the second-largest moon in the Solar System, is larger than Mercury and the only satellite in the Solar System with a substantial atmosphere.</string>
+
+    <string name="uranus_title">Uranus</string>
+    <string name="uranus_info">Uranus (19.2 AU), at 14 Earth masses, is the lightest of the outer planets. Uniquely among the planets, it orbits the Sun on its side; its axial tilt is over ninety degrees to the ecliptic. It has a much colder core than the other giant planets and radiates very little heat into space. Uranus has 27 known satellites, the largest ones being Titania, Oberon, Umbriel, Ariel, and Miranda.</string>
+
+    <string name="neptune_title">Neptune</string>
+    <string name="neptune_info">Neptune (30.1 AU), though slightly smaller than Uranus, is more massive (equivalent to 17 Earths) and hence more dense. It radiates more internal heat, but not as much as Jupiter or Saturn. Neptune has 14 known satellites. The largest, Triton, is geologically active, with geysers of liquid nitrogen. Triton is the only large satellite with a retrograde orbit. Neptune is accompanied in its orbit by several minor planets, termed Neptune trojans, that are in 1:1 resonance with it.</string>
+
+    <string name="ceres_title">Ceres</string>
+    <string name="ceres_info">Ceres (2.77 AU) is the largest asteroid, a protoplanet, and a dwarf planet. It has a diameter of slightly under 1,000 km, and a mass large enough for its own gravity to pull it into a spherical shape. Ceres was considered a planet when it was discovered in 1801, and was reclassified to asteroid in the 1850s as further observations revealed additional asteroids. It was classified as a dwarf planet in 2006 when the definition of a planet was created.</string>
+
+    <string name="pluto_title">Pluto</string>
+    <string name="pluto_info">The dwarf planet Pluto (39 AU average) is the largest known object in the Kuiper belt. When discovered in 1930, it was considered to be the ninth planet; this changed in 2006 with the adoption of a formal definition of planet. Pluto has a relatively eccentric orbit inclined 17 degrees to the ecliptic plane and ranging from 29.7 AU from the Sun at perihelion (within the orbit of Neptune) to 49.5 AU at aphelion. Pluto has a 3:2 resonance with Neptune, meaning that Pluto orbits twice round the Sun for every three Neptunian orbits. Kuiper belt objects whose orbits share this resonance are called plutinos.</string>
+
+    <string name="makemake_title">Makemake</string>
+    <string name="makemake_info">Makemake (45.79 AU average), although smaller than Pluto, is the largest known object in the classical Kuiper belt (that is, a Kuiper belt object not in a confirmed resonance with Neptune). Makemake is the brightest object in the Kuiper belt after Pluto. It was named and designated a dwarf planet in 2008. Its orbit is far more inclined than Pluto\'s, at 29°.</string>
+
+    <string name="haumea_title">Haumea</string>
+    <string name="haumea_info">Haumea (43.13 AU average) is in an orbit similar to Makemake except that it is in a 7:12 orbital resonance with Neptune. It is about the same size as Makemake and has two natural satellites. A rapid, 3.9-hour rotation gives it a flattened and elongated shape. It was named and designated a dwarf planet in 2008.</string>
+
+    <string name="eris_title">Eris</string>
+    <string name="eris_info">Eris (68 AU average) is the largest known scattered disc object, and caused a debate about what constitutes a planet, because it is 25% more massive than Pluto and about the same diameter. It is the most massive of the known dwarf planets. It has one known moon, Dysnomia. Like Pluto, its orbit is highly eccentric, with a perihelion of 38.2 AU (roughly Pluto\'s distance from the Sun) and an aphelion of 97.6 AU, and steeply inclined to the ecliptic plane.</string>
+
+
+    <!-- Solar System URLs -->
+
+    <string name="sun_url">https://en.m.wikipedia.org/wiki/Sun</string>
+    <string name="mercury_url">https://en.m.wikipedia.org/wiki/Mercury_(planet)</string>
+    <string name="venus_url">https://en.m.wikipedia.org/wiki/Venus</string>
+    <string name="earth_url">https://en.m.wikipedia.org/wiki/Earth</string>
+    <string name="mars_url">https://en.m.wikipedia.org/wiki/Mars</string>
+    <string name="jupiter_url">https://en.m.wikipedia.org/wiki/Jupiter</string>
+    <string name="saturn_url">https://en.m.wikipedia.org/wiki/Saturn</string>
+    <string name="uranus_url">https://en.m.wikipedia.org/wiki/Uranus</string>
+    <string name="neptune_url">https://en.m.wikipedia.org/wiki/Neptune</string>
+    <string name="ceres_url">https://en.m.wikipedia.org/wiki/Ceres_(dwarf_planet)</string>
+    <string name="pluto_url">https://en.m.wikipedia.org/wiki/Pluto</string>
+    <string name="makemake_url">https://en.m.wikipedia.org/wiki/Makemake</string>
+    <string name="haumea_url">https://en.m.wikipedia.org/wiki/Haumea</string>
+    <string name="eris_url">https://en.m.wikipedia.org/wiki/Eris_(dwarf_planet)</string>
+
+    <!-- others -->
+    <string name="read_more">Read more…</string>
+    <string name="back_to_list"><![CDATA[Back to the Solar System list]]></string>
+    <string name="set_date"><u>Change date</u></string>
+    <string name="notfound">Picture of the day not found</string>
+    <string name="second"> sec</string>
+    <string name="Search_sounds">Search sounds</string>
+    <string name="search">search</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="download_image_message">Download image?</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="image_not_found">Image not found</string>
+    <string name="mars_gallery">fgtr</string>
+    <string name="error_download_image">If image is not shown in your android version, please tap here to display image in web browser</string>
+    <string name="no_internet_connection">No internet connection</string>
+</resources>

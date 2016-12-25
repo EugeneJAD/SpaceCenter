@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="horizontal"
+              tools:context=".MainActivity">
+    <ImageView
+        android:id="@+id/image_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/category_name_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:background="@color/background"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="#8C9EFF"
+        tools:text="@string/esa_page_title"/>
+
+</LinearLayout>
