@@ -10,10 +10,11 @@
 
     <ImageView
         android:id="@+id/image_play_button"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_centerVertical="true"
-        android:src="@drawable/ic_play_arrow_white_36dp"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_centerVertical="true"/>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   xmlns:tools="http://schemas.android.com/tools"
@@ -55,4 +56,4 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
+</RelativeLayout>

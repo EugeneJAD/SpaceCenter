@@ -1,5 +1,6 @@
 package com.eugene.spacecenter;
 
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,20 +12,23 @@ import com.twitter.sdk.android.tweetui.TweetTimelineListAdapter;
 import com.twitter.sdk.android.tweetui.UserTimeline;
 
 /**
- * Created by Администратор on 08.10.2016.
+ * A simple {@link Fragment} subclass.
  */
-public class HubbleFragment extends Fragment {
+public class TwitterFragment extends Fragment {
 
-    public HubbleFragment() {
+    String twitterAccount;
+
+    public TwitterFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final View rootView=inflater.inflate(R.layout.fragment_list, container, false);
+        View rootView =inflater.inflate(R.layout.fragment_list, container, false);
+
+        twitterAccount = getArguments().getString("twitterAccount");
 
         ListView listView = (ListView) rootView.findViewById(R.id.list_view);
 
@@ -32,15 +36,19 @@ public class HubbleFragment extends Fragment {
         listView.setEmptyView(loadingIndicator);
 
         final UserTimeline userTimeline = new UserTimeline.Builder()
-                .screenName("NASA_Hubble")
+                .screenName(twitterAccount)
                 .build();
         final TweetTimelineListAdapter adapter = new TweetTimelineListAdapter.Builder(getContext())
                 .setTimeline(userTimeline)
                 .build();
 
+
         listView.setAdapter(adapter);
+
 
         return rootView;
 
+
     }
+
 }

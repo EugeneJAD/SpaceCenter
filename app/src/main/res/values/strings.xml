@@ -3,14 +3,18 @@
 
     <!-- Tabs titles -->
 
-    <string name="nasa_page_title">NASA\'S news</string>
+    <string name="nasa_page_title">NASA\'s news</string>
     <string name="solar_system_page_title">Solar System</string>
-    <string name="sounds_page_title">Space sounds (beta)</string>
+    <string name="sounds_page_title">Space sounds</string>
     <string name="esa_page_title">European Space Agency</string>
     <string name="iss_page_title">International Space Station</string>
     <string name="hubble_page_title">Hubble Space Telescope</string>
     <string name="earth_page_title">NASA Earth</string>
     <string name="apod_page_title">Astronomy Picture of the Day</string>
+    <string name="twitter_news_title">The latest Tweets</string>
+    <string name="spacex_page_title">SpaceX\'s news</string>
+    <string name="apod_list_page_title">Top 20 space images</string>
+    <string name="apod_hd_image_title">HD picture</string>
 
     <!-- Planets titles and text -->
 
@@ -106,7 +110,7 @@
     <string name="Search_sounds">Search sounds</string>
     <string name="search">search</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- Dialogs and toasts -->
     <string name="download_image_message">Download image?</string>
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
@@ -114,4 +118,10 @@
     <string name="mars_gallery">fgtr</string>
     <string name="error_download_image">If image is not shown in your android version, please tap here to display image in web browser</string>
     <string name="no_internet_connection">No internet connection</string>
+    <string name="download_HD_image_message">Download HD image?</string>
+    <string name="no_permission_storage">No permission to storage image</string>
+    <string name="image_downloading">Image Downloading</string>
+    <string name="image_exists">Image already exists</string>
+    <string name="images_not_found">Images not found</string>
+
 </resources>

@@ -1,27 +1,28 @@
 package com.eugene.spacecenter;
 
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DownloadManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,62 +33,61 @@ import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
+import java.io.File;
 import java.util.Calendar;
 
-public class ApodFragment extends Fragment implements LoaderManager.LoaderCallbacks<ApodBox>,  DatePickerDialog.OnDateSetListener{
 
-    private static final String LOG_TAG = ApodFragment.class.getSimpleName();
+public class APODtodayActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<ApodBox>,  DatePickerDialog.OnDateSetListener{
+
     private static final String JSON_URL = "https://api.nasa.gov/planetary/apod?hd=false";
-    private static final String API_KEY="&api_key=YAurBnDkk9eId7of823JM3MgW2ptbrQGXGaD81w";
+    private static final String API_KEY="&api_key=YAurBnDkk9eId7of823JM3MgW2ZptbrQGXGaD81w";
     private static final String DATE_QUERY="&date=";
     private static final int APOD_LOADER_ID = 1;
     private String url;
     private String downloadImageURL;
     private String imageUrl;
+    private String imageUrlHD;
     private TextView dateText;
     private TextView explanationText;
     private TextView titleText;
     private ImageView apodImageView;
-    private View loadingIndicator;
     private View loadingImageIndicator;
-    private TextView errorImageTextView;
     private DownloadManager downloadManager;
     private long downloadId;
     private ImageView downloadButton;
 
     @Override
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View rootView =inflater.inflate(R.layout.fragment_apod, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_apodtoday);
 
-        dateText = (TextView) rootView.findViewById(R.id.date_apod);
-        explanationText = (TextView) rootView.findViewById(R.id.explanation_apod);
-        titleText = (TextView) rootView.findViewById(R.id.title_apod);
-        errorImageTextView = (TextView) rootView.findViewById(R.id.text_error_download_image);
-        apodImageView=(ImageView) rootView.findViewById(R.id.web_view_apod);
-        downloadButton = (ImageView) rootView.findViewById(R.id.download_button);
 
-        loadingIndicator = rootView.findViewById(R.id.loading_indicator);
-        loadingImageIndicator = rootView.findViewById(R.id.loading_image_indicator);
-        TextView setDate = (TextView) rootView.findViewById(R.id.set_date);
+        dateText = (TextView) findViewById(R.id.date_apod);
+        explanationText = (TextView) findViewById(R.id.explanation_apod);
+        titleText = (TextView) findViewById(R.id.title_apod);
+        apodImageView=(ImageView) findViewById(R.id.image_today_apod);
+        downloadButton = (ImageView) findViewById(R.id.download_button);
 
-        Calendar c = Calendar.getInstance();
-        if (url==null)
-            url=createURL(c.get(Calendar.YEAR), c.get(Calendar.MONTH)+1, c.get(Calendar.DAY_OF_MONTH));
+        loadingImageIndicator = findViewById(R.id.loading_image_indicator);
+        TextView setDate = (TextView) findViewById(R.id.set_date);
+
+        if(getIntent().hasExtra("date")){
+            url = JSON_URL+DATE_QUERY+getIntent().getStringExtra("date")+API_KEY;
+        } else {
+            Calendar c = Calendar.getInstance();
+            url = createURL(c.get(Calendar.YEAR), c.get(Calendar.MONTH) + 1, c.get(Calendar.DAY_OF_MONTH));
+        }
 
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 DialogFragment newFragment = new DatePickerFragment();
-                newFragment.setTargetFragment(ApodFragment.this,0);
-                newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+                newFragment.show(getSupportFragmentManager(), "datePicker");
             }
         });
 
 
-        LoaderManager loaderManager = getLoaderManager();
+        LoaderManager loaderManager = getSupportLoaderManager();
         loaderManager.initLoader(APOD_LOADER_ID, null, this);
 
         downloadButton.setOnClickListener(new View.OnClickListener() {
@@ -99,12 +99,21 @@ public class ApodFragment extends Fragment implements LoaderManager.LoaderCallba
                     if(downloadManager!=null)
                         downloadManager.remove(downloadId);
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                    final Uri imageUri = Uri.parse(downloadImageURL);
+                    final String imageFilePath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "/" + imageUri.getLastPathSegment();
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(APODtodayActivity.this);
                     builder.setMessage(R.string.download_image_message)
                             .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+
+                                    File file = new File(imageFilePath);
+                                    if(!file.exists()) {
                                         downloadData(downloadImageURL);
+                                    } else {
+                                        Toast.makeText(APODtodayActivity.this,R.string.image_exists,Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             })
                             .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
@@ -118,45 +127,34 @@ public class ApodFragment extends Fragment implements LoaderManager.LoaderCallba
                     alertDialog.show();
                 }
                 else
-                    Toast.makeText(getContext(),R.string.image_not_found, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(APODtodayActivity.this,R.string.image_not_found, Toast.LENGTH_SHORT).show();
 
             }
         });
 
-        errorImageTextView.setOnClickListener(new View.OnClickListener() {
+
+        apodImageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
 
-                if (imageUrl!=null) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(imageUrl));
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.setPackage("com.android.chrome");
-                    try {
-                        startActivity(intent);
-                    }catch (ActivityNotFoundException ex) {
-                        // Chrome browser presumably not installed so allow user to choose instead
-                        intent.setPackage(null);
-                        startActivity(intent);
-                    }
+                if (imageUrlHD!=null) {
+                    makeIntentToImageActivity(imageUrlHD);
+                } else {
+                    makeIntentToImageActivity(imageUrl);
                 }
-                else
-                    Toast.makeText(getContext(),R.string.image_not_found, Toast.LENGTH_SHORT).show();
+
             }
         });
 
-        return rootView;
     }
-
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
 
         url=createURL(year,month+1, day);
-        loadingIndicator.setVisibility(View.VISIBLE);
         downloadButton.setVisibility(View.GONE);
         loadingImageIndicator.setVisibility(View.GONE);
-        errorImageTextView.setVisibility(View.GONE);
-        getLoaderManager().restartLoader(APOD_LOADER_ID,null,this);
+        getSupportLoaderManager().restartLoader(APOD_LOADER_ID,null,this);
 
     }
 
@@ -179,26 +177,23 @@ public class ApodFragment extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public Loader<ApodBox> onCreateLoader(int id, Bundle args) {
 
-        return new ApodLoader(getContext(),url);
+        return new ApodLoader(this,url);
     }
 
     @Override
     public void onLoadFinished(Loader<ApodBox> loader, ApodBox data) {
 
-        loadingIndicator.setVisibility(View.GONE);
         loadingImageIndicator.setVisibility(View.VISIBLE);
-        errorImageTextView.setVisibility(View.VISIBLE);
 
         if (data!=null) {
             dateText.setText(data.getDate());
             titleText.setText(data.getTitle());
             explanationText.setText(data.getExplanation());
 
-            Log.v(LOG_TAG, "data.getUrl() = "+data.getUrl());
-
+            imageUrlHD = data.getHDurl();
             imageUrl = data.getUrl();
 
-            Glide.with(getActivity()).load(imageUrl)
+            Glide.with(this).load(imageUrl)
                     .listener(new RequestListener<String, GlideDrawable>() {
                         @Override
                         public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
@@ -207,12 +202,10 @@ public class ApodFragment extends Fragment implements LoaderManager.LoaderCallba
                         @Override
                         public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
                             loadingImageIndicator.setVisibility(View.GONE);
-                            errorImageTextView.setVisibility(View.GONE);
                             downloadButton.setVisibility(View.VISIBLE);
                             return false;
                         }
                     })
-                    .dontAnimate()
                     .into(apodImageView);
 
             downloadImageURL = data.getHDurl();
@@ -222,14 +215,12 @@ public class ApodFragment extends Fragment implements LoaderManager.LoaderCallba
             if (!isInternetConnected()) {
                 dateText.setText(R.string.no_internet_connection);
                 loadingImageIndicator.setVisibility(View.GONE);
-                errorImageTextView.setVisibility(View.GONE);
                 titleText.setText("");
                 explanationText.setText("");
             }
             else {
                 dateText.setText(R.string.notfound);
                 loadingImageIndicator.setVisibility(View.GONE);
-                errorImageTextView.setVisibility(View.GONE);
                 titleText.setText("");
                 explanationText.setText("");
             }
@@ -246,7 +237,6 @@ public class ApodFragment extends Fragment implements LoaderManager.LoaderCallba
 
     public static class DatePickerFragment extends DialogFragment{
 
-        private DatePickerDialog.OnDateSetListener dateSetListener;
         DatePickerDialog myDatePicker;
 
         @Override
@@ -257,9 +247,7 @@ public class ApodFragment extends Fragment implements LoaderManager.LoaderCallba
             int month = c.get(Calendar.MONTH);
             int day = c.get(Calendar.DAY_OF_MONTH);
 
-            dateSetListener = (DatePickerDialog.OnDateSetListener)getTargetFragment();
-
-            myDatePicker = new DatePickerDialog(getActivity(), dateSetListener, year, month, day);
+            myDatePicker = new DatePickerDialog(getActivity(), (APODtodayActivity)getActivity(), year, month, day);
 
             return myDatePicker;
         }
@@ -267,47 +255,73 @@ public class ApodFragment extends Fragment implements LoaderManager.LoaderCallba
 
     private void downloadData(String downloadImageURL) {
 
-        Log.v(LOG_TAG, "downloadImageURL "+downloadImageURL);
 
-        Uri imageUri = Uri.parse(downloadImageURL);
+        if (isStoragePermission()) {
 
-        // Create request for android download manager
-        downloadManager = (DownloadManager) getContext().getSystemService(Context.DOWNLOAD_SERVICE);
-        DownloadManager.Request request = new DownloadManager.Request(imageUri);
+            Uri imageUri = Uri.parse(downloadImageURL);
 
-        //Restrict the types of networks over which this download may proceed.
-        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
+            // Create request for android download manager
+            downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+            DownloadManager.Request request = new DownloadManager.Request(imageUri);
 
-        //Set whether this download may proceed over a roaming connection.
-        request.setAllowedOverRoaming(false);
+            //Restrict the types of networks over which this download may proceed.
+            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
 
-        //Setting title of request
-        request.setTitle(imageUri.getLastPathSegment());
+            //Set whether this download may proceed over a roaming connection.
+            request.setAllowedOverRoaming(false);
 
-        //Setting description of request
-        request.setDescription("Astronomy Picture of the Day");
+            //Setting title of request
+            request.setTitle(imageUri.getLastPathSegment());
 
-        request.allowScanningByMediaScanner();
+            //Setting description of request
+            request.setDescription("Astronomy Picture of the Day");
 
-        //request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,"/SpaceCenter/"+imageUri.getLastPathSegment());
-        request.setDestinationInExternalFilesDir(getContext(), Environment.DIRECTORY_DOWNLOADS,imageUri.getLastPathSegment());
+            request.allowScanningByMediaScanner();
 
-        //Enqueue a new download and same the referenceId
-        downloadId= downloadManager.enqueue(request);
+            //request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,"/SpaceCenter/"+imageUri.getLastPathSegment());
+            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_PICTURES, imageUri.getLastPathSegment());
 
-        Toast.makeText(getContext(),"Image Downloading",Toast.LENGTH_SHORT).show();
+            //Enqueue a new download and same the referenceId
+            downloadId = downloadManager.enqueue(request);
 
+            Toast.makeText(this, R.string.image_downloading, Toast.LENGTH_SHORT).show();
+
+        } else{
+            Toast.makeText(this, R.string.no_permission_storage, Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    private boolean isStoragePermission (){
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+
+        if (Build.VERSION.SDK_INT>=23){
+            if (permissionCheck == PackageManager.PERMISSION_GRANTED)
+                return true;
+            else
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+            return false;
+        } else
+            return true;
 
     }
 
     private boolean isInternetConnected() {
         ConnectivityManager cm =
-                (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork!=null && activeNetwork.isConnected();
 
     }
 
-}
+    private void makeIntentToImageActivity(String url){
 
+        Intent intent = new Intent(this,APODImageActivity.class);
+        intent.putExtra("hdImageURL", url);
+        startActivity(intent);
+
+    }
+
+}

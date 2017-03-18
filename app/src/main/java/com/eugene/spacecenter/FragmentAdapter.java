@@ -1,6 +1,7 @@
 package com.eugene.spacecenter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -10,8 +11,13 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class FragmentAdapter extends FragmentPagerAdapter {
 
-    static final int NUMBER_FRAGMENTS = 8;
-    Context context;
+    private static final int NUMBER_FRAGMENTS = 5;
+    public static final int NASA_FRAGMENT_POSITION = 0;
+    public static final int ESA_FRAGMENT_POSITION = 1;
+    public static final int ISS_FRAGMENT_POSITION = 2;
+    public static final int SPACEX_FRAGMENT_POSITION = 3;
+    public static final int HUBBLE_FRAGMENT_POSITION = 4;
+    private Context context;
 
     public FragmentAdapter(Context context, FragmentManager fm){
         super(fm);
@@ -22,22 +28,18 @@ public class FragmentAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
 
         switch (position){
-            case 0:
-                return new NasaFragment();
-            case 1:
-                return new ESAFragment();
-            case 2:
-                return new ISSFragment();
-            case 3:
-                return new HubbleFragment();
-            case 4:
-                return new EarthFragment();
-            case 5:
-                return new PlanetsInfoFragment();
-            case 6:
-                return new ApodFragment();
+            case NASA_FRAGMENT_POSITION:
+                return newTwitterFragment("NASA");
+            case ESA_FRAGMENT_POSITION:
+                return newTwitterFragment("esa");
+            case ISS_FRAGMENT_POSITION:
+                return newTwitterFragment("Space_Station");
+            case SPACEX_FRAGMENT_POSITION:
+                return newTwitterFragment("SpaceX");
+            case HUBBLE_FRAGMENT_POSITION:
+                return newTwitterFragment("NASA_Hubble");
             default:
-                return new SoundsFragment();
+                return newTwitterFragment("NASA");
         }
 
     }
@@ -50,23 +52,29 @@ public class FragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if (position==0)
+        if (position==NASA_FRAGMENT_POSITION)
             return context.getString(R.string.nasa_page_title);
-        else if(position==1)
+        else if(position==ESA_FRAGMENT_POSITION)
             return context.getString(R.string.esa_page_title);
-        else if (position==2)
+        else if (position==ISS_FRAGMENT_POSITION)
             return context.getString(R.string.iss_page_title);
-        else if (position==3)
+        else if (position==SPACEX_FRAGMENT_POSITION)
+            return context.getString(R.string.spacex_page_title);
+        else if (position==HUBBLE_FRAGMENT_POSITION)
             return context.getString(R.string.hubble_page_title);
-        else if (position==4)
-            return context.getString(R.string.earth_page_title);
-        else if (position==5)
-            return context.getString(R.string.solar_system_page_title);
-        else if (position==6)
-            return context.getString(R.string.apod_page_title);
         else
-            return context.getString(R.string.sounds_page_title);
+            return context.getString(R.string.nasa_page_title);
 
+    }
+
+    private TwitterFragment newTwitterFragment(String s){
+
+        TwitterFragment twitterFragment = new TwitterFragment();
+        Bundle args = new Bundle();
+        args.putString("twitterAccount",s);
+        twitterFragment.setArguments(args);
+
+        return twitterFragment;
     }
 
 

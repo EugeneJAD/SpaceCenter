@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.eugene.spacecenter.WebBrowserFragment">
+    tools:context="com.eugene.spacecenter.WikiSolarSystemFragment">
 
 
     <WebView
@@ -13,13 +13,5 @@
         android:layout_height="match_parent"
         android:layout_weight="3"
         />
-
-    <Button
-        android:id="@+id/back_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/back_to_list"
-        android:background="@color/colorAccent"
-        android:layout_weight="1" />
 
 </LinearLayout>

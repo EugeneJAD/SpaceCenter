@@ -64,11 +64,12 @@ public class PlanetsInfoFragment extends Fragment {
 
                 Bundle b = new Bundle();
                 b.putString("url", current.getURL());
-                WebBrowserFragment webBrowserFragment = new WebBrowserFragment();
-                webBrowserFragment.setArguments(b);
+                WikiSolarSystemFragment wikiSolarSystemFragment = new WikiSolarSystemFragment();
+                wikiSolarSystemFragment.setArguments(b);
 
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.root_frame, webBrowserFragment);
+                transaction.replace(R.id.fragment_container_for_solar_sys, wikiSolarSystemFragment);
+                transaction.addToBackStack(null);
                 transaction.commit();
 
             }

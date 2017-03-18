@@ -42,9 +42,7 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        ApodBox apodBox = extractAPODDataFromJSON(jsonResponse);
-
-        return apodBox;
+        return extractAPODDataFromJSON(jsonResponse);
     }
 
     private static ApodBox extractAPODDataFromJSON(String jsonResponse) {
