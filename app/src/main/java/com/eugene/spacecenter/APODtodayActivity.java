@@ -32,6 +32,8 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.io.File;
 import java.util.Calendar;
@@ -61,6 +63,9 @@ public class APODtodayActivity extends AppCompatActivity implements LoaderManage
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apodtoday);
 
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         dateText = (TextView) findViewById(R.id.date_apod);
         explanationText = (TextView) findViewById(R.id.explanation_apod);

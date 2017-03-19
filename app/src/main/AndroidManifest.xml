@@ -54,8 +54,8 @@
         </activity>
         <activity
             android:name=".APODRecyclerViewActivity"
-            android:launchMode="singleTop"
             android:label="@string/apod_list_page_title"
+            android:launchMode="singleTop"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -66,12 +66,20 @@
             android:name="io.fabric.ApiKey"
             android:value="5ee99fa70eb7558fefc97d8990c47e5bf972d134"/>
 
-        <activity android:name=".APODImageActivity"
+        <activity
+            android:name=".APODImageActivity"
             android:label="@string/apod_hd_image_title"
             android:parentActivityName=".APODtodayActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eugene.spacecenter.APODtodayActivity"/>
+        </activity>
+        <activity android:name=".WikiSolarSystemActivity"
+            android:label="@string/wiki_page_title"
+            android:parentActivityName=".SolarSystemActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.eugene.spacecenter.SolarSystemActivity"/>
         </activity>
 
     </application>

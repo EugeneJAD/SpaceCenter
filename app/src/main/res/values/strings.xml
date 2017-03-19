@@ -15,6 +15,7 @@
     <string name="spacex_page_title">SpaceX\'s news</string>
     <string name="apod_list_page_title">Top 20 space images</string>
     <string name="apod_hd_image_title">HD picture</string>
+    <string name="wiki_page_title">Wikipedia\'s article</string>
 
     <!-- Planets titles and text -->
 
@@ -123,5 +124,16 @@
     <string name="image_downloading">Image Downloading</string>
     <string name="image_exists">Image already exists</string>
     <string name="images_not_found">Images not found</string>
+
+    <!-- AdMob -->
+    ca-app-pub-5753313989863665~8798882438
+    <string name="admob_app_id">ca-app-pub-5753313989863665~8798882438</string>
+    <string name="main_banner_ad_unit_id">ca-app-pub-5753313989863665/1275615630</string>
+    <string name="apodlist_banner_ad_unit_id">ca-app-pub-5753313989863665/4118004035</string>
+    <string name="apodtoday_banner_ad_unit_id">ca-app-pub-5753313989863665/5594737237</string>
+    <string name="solar_banner_ad_unit_id">ca-app-pub-5753313989863665/7071470436</string>
+    <string name="sounds_banner_ad_unit_id">ca-app-pub-5753313989863665/8548203639</string>
+    <string name="viewpager_banner_ad_unit_id">ca-app-pub-5753313989863665/1024936835</string>
+    <string name="wiki_banner_ad_unit_id">ca-app-pub-5753313989863665/2501670031</string>
 
 </resources>

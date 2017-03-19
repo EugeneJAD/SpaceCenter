@@ -1,6 +1,9 @@
 package com.eugene.spacecenter;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
@@ -10,7 +13,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,6 +42,11 @@ public class APODRecyclerViewActivity extends AppCompatActivity implements Loade
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apodrecycler_view);
 
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+        TextView noInternetMessage = (TextView) findViewById(R.id.no_internet_connection_message);
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
@@ -50,7 +62,21 @@ public class APODRecyclerViewActivity extends AppCompatActivity implements Loade
 
         recyclerView.setAdapter(apodRecyclerViewAdapter);
 
-        getSupportLoaderManager().initLoader(APOD_LOADER_ID,null,this);
+        if (isInternetConnected()) {
+            noInternetMessage.setVisibility(View.GONE);
+            getSupportLoaderManager().initLoader(APOD_LOADER_ID, null, this);
+        } else {
+            noInternetMessage.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    private boolean isInternetConnected() {
+        ConnectivityManager cm =
+                (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork!=null && activeNetwork.isConnected();
 
     }
 

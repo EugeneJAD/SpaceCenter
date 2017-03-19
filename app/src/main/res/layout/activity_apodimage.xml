@@ -3,7 +3,7 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:context="com.eugene.spacecenter.ApodImageFragment">
+                tools:context="com.eugene.spacecenter.APODImageActivity">
 
     <ScrollView
         android:layout_width="match_parent"

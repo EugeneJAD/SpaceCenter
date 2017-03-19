@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.twitter.sdk.android.Twitter;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 
@@ -14,7 +17,11 @@ import java.util.ArrayList;
 
 import io.fabric.sdk.android.Fabric;
 
-import static com.eugene.spacecenter.FragmentAdapter.*;
+import static com.eugene.spacecenter.FragmentAdapter.ESA_FRAGMENT_POSITION;
+import static com.eugene.spacecenter.FragmentAdapter.HUBBLE_FRAGMENT_POSITION;
+import static com.eugene.spacecenter.FragmentAdapter.ISS_FRAGMENT_POSITION;
+import static com.eugene.spacecenter.FragmentAdapter.NASA_FRAGMENT_POSITION;
+import static com.eugene.spacecenter.FragmentAdapter.SPACEX_FRAGMENT_POSITION;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(getApplicationContext(), getString(R.string.admob_app_id));
+
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
         Fabric.with(this, new Twitter(authConfig));

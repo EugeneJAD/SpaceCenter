@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "739931581568",
+    "firebase_url": "https://space-center.firebaseio.com",
+    "project_id": "space-center",
+    "storage_bucket": "space-center.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:739931581568:android:a3e66ac3a42229ba",
+        "android_client_info": {
+          "package_name": "com.eugene.spacecenter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "739931581568-l8emat8bj7uo7f40u644nn49sl689hve.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.eugene.spacecenter",
+            "certificate_hash": "a5d22da45de7d2e90be572596746791d4dd991a0"
+          }
+        },
+        {
+          "client_id": "739931581568-0ge5jenhtt7n3h2dfhe1aqn8dmgnmt3j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2Dg08iflEmYycn3PcTCJgTIyF7Opk1t4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "739931581568-0ge5jenhtt7n3h2dfhe1aqn8dmgnmt3j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

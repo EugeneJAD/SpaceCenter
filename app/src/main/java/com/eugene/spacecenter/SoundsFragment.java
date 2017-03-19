@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -105,6 +107,7 @@ public class SoundsFragment extends Fragment implements LoaderManager.LoaderCall
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_list_sounds, container, false);
 
+        TextView noInternetMessage = (TextView) rootView.findViewById(R.id.no_internet_connection_message);
 
         audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
 
@@ -118,10 +121,23 @@ public class SoundsFragment extends Fragment implements LoaderManager.LoaderCall
         View loadingIndicator = (View) rootView.findViewById(R.id.loading_indicator);
         listView.setEmptyView(loadingIndicator);
 
-        LoaderManager loader = getLoaderManager();
-        loader.initLoader(SOUND_LOADER_ID, null, this);
+        if (isInternetConnected()) {
+            noInternetMessage.setVisibility(View.GONE);
+            LoaderManager loader = getLoaderManager();
+            loader.initLoader(SOUND_LOADER_ID, null, this);
+        } else {
+            noInternetMessage.setVisibility(View.VISIBLE);
+        }
 
         return rootView;
+    }
+
+    private boolean isInternetConnected() {
+        ConnectivityManager cm =
+                (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork!=null && activeNetwork.isConnected();
     }
 
     @Override
