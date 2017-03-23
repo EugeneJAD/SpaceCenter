@@ -84,7 +84,7 @@ public class APODRecyclerViewActivity extends AppCompatActivity implements Loade
     public Loader<List<ApodBox>> onCreateLoader(int id, Bundle args) {
         return new AsyncTaskLoader<List<ApodBox>>(this) {
 
-            List<ApodBox> mApodBoxes;
+            private List<ApodBox> mApodBoxes;
 
             protected void onStartLoading() {
                 if (mApodBoxes != null) {

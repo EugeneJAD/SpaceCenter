@@ -158,7 +158,7 @@ public class APODtodayActivity extends AppCompatActivity implements LoaderManage
 
         url=createURL(year,month+1, day);
         downloadButton.setVisibility(View.GONE);
-        loadingImageIndicator.setVisibility(View.GONE);
+        loadingImageIndicator.setVisibility(View.VISIBLE);
         getSupportLoaderManager().restartLoader(APOD_LOADER_ID,null,this);
 
     }
@@ -187,8 +187,6 @@ public class APODtodayActivity extends AppCompatActivity implements LoaderManage
 
     @Override
     public void onLoadFinished(Loader<ApodBox> loader, ApodBox data) {
-
-        loadingImageIndicator.setVisibility(View.VISIBLE);
 
         if (data!=null) {
             dateText.setText(data.getDate());

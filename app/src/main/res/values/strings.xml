@@ -16,6 +16,7 @@
     <string name="apod_list_page_title">Top 20 space images</string>
     <string name="apod_hd_image_title">HD picture</string>
     <string name="wiki_page_title">Wikipedia\'s article</string>
+    <string name="asteroids_threat">Asteroids\' threat</string>
 
     <!-- Planets titles and text -->
 
@@ -135,5 +136,15 @@
     <string name="sounds_banner_ad_unit_id">ca-app-pub-5753313989863665/8548203639</string>
     <string name="viewpager_banner_ad_unit_id">ca-app-pub-5753313989863665/1024936835</string>
     <string name="wiki_banner_ad_unit_id">ca-app-pub-5753313989863665/2501670031</string>
+    <string name="asteroid_banner_ad_unit_id">ca-app-pub-5753313989863665/4171389635</string>
+
+    <!-- Asteroid -->
+    <string name="asteroid_name">Name:</string>
+    <string name="asteroid_diametr">Diameter, m:</string>
+    <string name="asteroid_approach">Close Approach:</string>
+    <string name="asteroid_velocity">Velocity, km/h:</string>
+    <string name="asteroid_distance">Miss distance, km:</string>
+    <string name="asteroid_hazardous">Hazardous:</string>
+    <string name="information_not_found">Information not found</string>
 
 </resources>

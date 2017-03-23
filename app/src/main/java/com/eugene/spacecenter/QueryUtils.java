@@ -15,8 +15,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Администратор on 24.10.2016.
@@ -183,5 +185,118 @@ public final class QueryUtils {
         return soundBoxes;
     }
 
+    public static List<Asteroid> fetchAsteroidsData (String url, String startDate, String endDate) {
+
+        URL jsonURL = createURL(url);
+
+        String jsonAsteroidResponse = null;
+
+        try {
+            jsonAsteroidResponse = makeHTTPConnection(jsonURL);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
+        }
+
+        return extractAsteroidDataFromJSON(jsonAsteroidResponse, startDate, endDate);
+
+    }
+
+    private static List<Asteroid> extractAsteroidDataFromJSON(String jsonAsteroidResponse,String startDate, String endDate) {
+
+        if (TextUtils.isEmpty(jsonAsteroidResponse)) {
+            return null;
+        }
+
+        List<Asteroid> asteroids = new ArrayList<>();
+
+        try {
+
+            JSONObject root  = new JSONObject(jsonAsteroidResponse);
+            JSONObject objects = root.getJSONObject("near_earth_objects");
+            JSONArray dataEndArray = objects.getJSONArray(endDate);
+
+            for (int i =0; i<dataEndArray.length(); i++)
+            {
+                JSONObject jsonObject = dataEndArray.getJSONObject(i);
+                JSONObject diameterObject = jsonObject.getJSONObject("estimated_diameter");
+                JSONObject diameterMetreObject = diameterObject.getJSONObject("meters");
+
+                JSONArray approach = jsonObject.getJSONArray("close_approach_data");
+                JSONObject approachObject = approach.getJSONObject(0);
+                JSONObject velocityObject = approachObject.getJSONObject("relative_velocity");
+                JSONObject missDistance = approachObject.getJSONObject("miss_distance");
+
+                asteroids.add(new Asteroid(jsonObject.getString("name"),
+                        formattedDouble(diameterMetreObject.getDouble("estimated_diameter_max")),
+                        approachObject.getString("close_approach_date"),
+                        formattedDouble(velocityObject.getDouble("kilometers_per_hour")),
+                        missDistance.getString("kilometers"),
+                        jsonObject.getBoolean("is_potentially_hazardous_asteroid"),
+                        getAsteroidImage()));
+            }
+            JSONArray dataStartArray = objects.getJSONArray(startDate);
+
+            for (int i =0; i<dataStartArray.length(); i++)
+            {
+                JSONObject jsonObject = dataStartArray.getJSONObject(i);
+                JSONObject diameterObject = jsonObject.getJSONObject("estimated_diameter");
+                JSONObject diameterMetreObject = diameterObject.getJSONObject("meters");
+
+                JSONArray approach = jsonObject.getJSONArray("close_approach_data");
+                JSONObject approachObject = approach.getJSONObject(0);
+                JSONObject velocityObject = approachObject.getJSONObject("relative_velocity");
+                JSONObject missDistance = approachObject.getJSONObject("miss_distance");
+
+
+
+                asteroids.add(new Asteroid(jsonObject.getString("name"),
+                        formattedDouble(diameterMetreObject.getDouble("estimated_diameter_max")),
+                        approachObject.getString("close_approach_date"),
+                        formattedDouble(velocityObject.getDouble("kilometers_per_hour")),
+                        missDistance.getString("kilometers"),
+                        jsonObject.getBoolean("is_potentially_hazardous_asteroid"),
+                        getAsteroidImage()));
+            }
+
+
+        }
+        catch (JSONException e) {
+            Log.e(LOG_TAG, "Problem parsing the earthquake JSON results", e);
+        }
+
+        return asteroids;
+
+    }
+
+    private static String formattedDouble(Double d){
+
+        DecimalFormat decimalFormat = new DecimalFormat("0.00");
+        return decimalFormat.format(d);
+    }
+
+    private static int getAsteroidImage() {
+
+        Random random = new Random();
+
+        switch (random.nextInt(6)) {
+            case 0:
+                return R.drawable.ast1;
+            case 1:
+                return R.drawable.ast2;
+            case 2:
+                return R.drawable.ast3;
+            case 3:
+                return R.drawable.ast4;
+            case 4:
+                return R.drawable.ast5;
+            case 5:
+                return R.drawable.ast6;
+            case 6:
+                return R.drawable.ast7;
+            default:
+                return R.drawable.ast3;
+
+        }
+    }
 
 }
