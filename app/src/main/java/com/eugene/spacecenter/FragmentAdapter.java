@@ -37,7 +37,7 @@ public class FragmentAdapter extends FragmentPagerAdapter {
             case SPACEX_FRAGMENT_POSITION:
                 return newTwitterFragment("SpaceX");
             case HUBBLE_FRAGMENT_POSITION:
-                return newTwitterFragment("NASA_Hubble");
+                return newTwitterFragment("NASAHubble");
             default:
                 return newTwitterFragment("NASA");
         }

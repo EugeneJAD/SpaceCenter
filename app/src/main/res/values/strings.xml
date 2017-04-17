@@ -146,5 +146,6 @@
     <string name="asteroid_distance">Miss distance, km:</string>
     <string name="asteroid_hazardous">Hazardous:</string>
     <string name="information_not_found">Information not found</string>
+    <string name="no_information_found">Information not found for today</string>
 
 </resources>

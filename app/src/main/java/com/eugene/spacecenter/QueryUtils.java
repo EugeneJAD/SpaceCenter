@@ -209,59 +209,69 @@ public final class QueryUtils {
 
         List<Asteroid> asteroids = new ArrayList<>();
 
+        Log.i(LOG_TAG,"JSON STRING: "+jsonAsteroidResponse);
+
         try {
 
             JSONObject root  = new JSONObject(jsonAsteroidResponse);
             JSONObject objects = root.getJSONObject("near_earth_objects");
-            JSONArray dataEndArray = objects.getJSONArray(endDate);
 
-            for (int i =0; i<dataEndArray.length(); i++)
-            {
-                JSONObject jsonObject = dataEndArray.getJSONObject(i);
-                JSONObject diameterObject = jsonObject.getJSONObject("estimated_diameter");
-                JSONObject diameterMetreObject = diameterObject.getJSONObject("meters");
+            try {
+                JSONArray dataEndArray = objects.getJSONArray(endDate);
 
-                JSONArray approach = jsonObject.getJSONArray("close_approach_data");
-                JSONObject approachObject = approach.getJSONObject(0);
-                JSONObject velocityObject = approachObject.getJSONObject("relative_velocity");
-                JSONObject missDistance = approachObject.getJSONObject("miss_distance");
+                for (int i = 0; i < dataEndArray.length(); i++) {
+                    JSONObject jsonObject = dataEndArray.getJSONObject(i);
+                    JSONObject diameterObject = jsonObject.getJSONObject("estimated_diameter");
+                    JSONObject diameterMetreObject = diameterObject.getJSONObject("meters");
 
-                asteroids.add(new Asteroid(jsonObject.getString("name"),
-                        formattedDouble(diameterMetreObject.getDouble("estimated_diameter_max")),
-                        approachObject.getString("close_approach_date"),
-                        formattedDouble(velocityObject.getDouble("kilometers_per_hour")),
-                        missDistance.getString("kilometers"),
-                        jsonObject.getBoolean("is_potentially_hazardous_asteroid"),
-                        getAsteroidImage()));
+                    JSONArray approach = jsonObject.getJSONArray("close_approach_data");
+                    JSONObject approachObject = approach.getJSONObject(0);
+                    JSONObject velocityObject = approachObject.getJSONObject("relative_velocity");
+                    JSONObject missDistance = approachObject.getJSONObject("miss_distance");
+
+                    asteroids.add(new Asteroid(jsonObject.getString("name"),
+                            formattedDouble(diameterMetreObject.getDouble("estimated_diameter_max")),
+                            approachObject.getString("close_approach_date"),
+                            formattedDouble(velocityObject.getDouble("kilometers_per_hour")),
+                            missDistance.getString("kilometers"),
+                            jsonObject.getBoolean("is_potentially_hazardous_asteroid"),
+                            getAsteroidImage()));
+                }
+            }  catch (JSONException e) {
+                Log.e(LOG_TAG, "Problem parsing the asteroids JSON results for End Date "+endDate, e);
             }
-            JSONArray dataStartArray = objects.getJSONArray(startDate);
 
-            for (int i =0; i<dataStartArray.length(); i++)
-            {
-                JSONObject jsonObject = dataStartArray.getJSONObject(i);
-                JSONObject diameterObject = jsonObject.getJSONObject("estimated_diameter");
-                JSONObject diameterMetreObject = diameterObject.getJSONObject("meters");
+            try {
 
-                JSONArray approach = jsonObject.getJSONArray("close_approach_data");
-                JSONObject approachObject = approach.getJSONObject(0);
-                JSONObject velocityObject = approachObject.getJSONObject("relative_velocity");
-                JSONObject missDistance = approachObject.getJSONObject("miss_distance");
+                JSONArray dataStartArray = objects.getJSONArray(startDate);
+
+                for (int i = 0; i < dataStartArray.length(); i++) {
+                    JSONObject jsonObject = dataStartArray.getJSONObject(i);
+                    JSONObject diameterObject = jsonObject.getJSONObject("estimated_diameter");
+                    JSONObject diameterMetreObject = diameterObject.getJSONObject("meters");
+
+                    JSONArray approach = jsonObject.getJSONArray("close_approach_data");
+                    JSONObject approachObject = approach.getJSONObject(0);
+                    JSONObject velocityObject = approachObject.getJSONObject("relative_velocity");
+                    JSONObject missDistance = approachObject.getJSONObject("miss_distance");
 
 
-
-                asteroids.add(new Asteroid(jsonObject.getString("name"),
-                        formattedDouble(diameterMetreObject.getDouble("estimated_diameter_max")),
-                        approachObject.getString("close_approach_date"),
-                        formattedDouble(velocityObject.getDouble("kilometers_per_hour")),
-                        missDistance.getString("kilometers"),
-                        jsonObject.getBoolean("is_potentially_hazardous_asteroid"),
-                        getAsteroidImage()));
-            }
+                    asteroids.add(new Asteroid(jsonObject.getString("name"),
+                            formattedDouble(diameterMetreObject.getDouble("estimated_diameter_max")),
+                            approachObject.getString("close_approach_date"),
+                            formattedDouble(velocityObject.getDouble("kilometers_per_hour")),
+                            missDistance.getString("kilometers"),
+                            jsonObject.getBoolean("is_potentially_hazardous_asteroid"),
+                            getAsteroidImage()));
+                }
+            }catch (JSONException e) {
+            Log.e(LOG_TAG, "Problem parsing the asteroids JSON results for Start Date "+startDate, e);
+        }
 
 
         }
         catch (JSONException e) {
-            Log.e(LOG_TAG, "Problem parsing the earthquake JSON results", e);
+            Log.e(LOG_TAG, "Problem parsing the asteroids JSON results", e);
         }
 
         return asteroids;

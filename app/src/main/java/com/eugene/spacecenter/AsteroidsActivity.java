@@ -13,7 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -35,6 +34,7 @@ public class AsteroidsActivity extends AppCompatActivity implements LoaderManage
     private static final String DATE_END="&end_date=";
     private static final int APOD_LOADER_ID = 3;
     private ProgressBar progressBar;
+    private TextView noInformationMassage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class AsteroidsActivity extends AppCompatActivity implements LoaderManage
         mAdView.loadAd(adRequest);
 
         TextView noInternetMessage = (TextView) findViewById(R.id.no_internet_connection_message);
+        noInformationMassage = (TextView) findViewById(R.id.no_information_found);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
         mRecyclerView = (RecyclerView) findViewById(R.id.apod_recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -118,10 +119,10 @@ public class AsteroidsActivity extends AppCompatActivity implements LoaderManage
 
         progressBar.setVisibility(View.INVISIBLE);
 
-        if(data!=null) {
+        if(data!=null && data.size()>0) {
             mAsteroidsAdapter.setAsteroidsData(data);
         } else {
-            Toast.makeText(this, R.string.information_not_found, Toast.LENGTH_LONG).show();
+            noInformationMassage.setVisibility(View.VISIBLE);
         }
     }
 
