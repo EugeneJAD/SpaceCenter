@@ -1,50 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:ads="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.eugene.spacecenter.APODRecyclerViewActivity"
-    android:background="@color/background">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/no_internet_connection_message"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/no_internet_connection"
-        android:textColor="@color/textColor"
-        android:gravity="center"/>
+    <RelativeLayout
+        style="@style/FullScreenView"
+        android:background="@color/grey_900">
 
+        <TextView
+            android:id="@+id/no_internet_connection_message"
+            style="@style/FullWidthView"
+            android:text="@string/no_internet_connection"
+            android:layout_marginTop="@dimen/screen_content_margin"
+            android:textColor="@color/textColor"
+            android:gravity="center_horizontal"/>
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/WrappedView"
+            android:layout_centerInParent="true"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/apod_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </android.support.v7.widget.RecyclerView>
+            style="@style/FullScreenView"/>
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/adView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|bottom"
-            ads:adSize="BANNER"
-            ads:adUnitId="@string/apodlist_banner_ad_unit_id">
-        </com.google.android.gms.ads.AdView>
-
-    </LinearLayout>
-
-
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

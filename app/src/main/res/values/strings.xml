@@ -107,7 +107,7 @@
     <string name="read_more">Read more…</string>
     <string name="back_to_list"><![CDATA[Back to the Solar System list]]></string>
     <string name="set_date"><u>Change date</u></string>
-    <string name="notfound">Picture of the day not found</string>
+    <string name="notfound">Picture not found</string>
     <string name="second"> sec</string>
     <string name="Search_sounds">Search sounds</string>
     <string name="search">search</string>
@@ -127,7 +127,6 @@
     <string name="images_not_found">Images not found</string>
 
     <!-- AdMob -->
-    ca-app-pub-5753313989863665~8798882438
     <string name="admob_app_id">ca-app-pub-5753313989863665~8798882438</string>
     <string name="main_banner_ad_unit_id">ca-app-pub-5753313989863665/1275615630</string>
     <string name="apodlist_banner_ad_unit_id">ca-app-pub-5753313989863665/4118004035</string>
@@ -147,5 +146,24 @@
     <string name="asteroid_hazardous">Hazardous:</string>
     <string name="information_not_found">Information not found</string>
     <string name="no_information_found">Information not found for today</string>
+
+
+    <!-- keys -->
+    <string name="twitter_key">KuydykHcqTFPt0Whcgdrnncd0</string>
+    <string name="twitter_secret">R6eZR8UulR8rhBHUlMhObp9OXTkG32BDfZF6Xn7GwLx54bKmzs</string>
+    <string name="nasa_api_key">YAurBnDkk9eId7of823JM3MgW2ZptbrQGXGaD81w</string>
+
+
+    <string name="apod_categoty_title">Picture Of The Day</string>
+    <string name="asteroids_categoty_title">Asteroids</string>
+    <string name="esa_categoty_title">ESA</string>
+    <string name="hubble_categoty_title">Hubble</string>
+    <string name="iss_categoty_title">ISS</string>
+    <string name="nasa_categoty_title">NASA</string>
+    <string name="sounds_categoty_title">Sounds</string>
+    <string name="spacex_categoty_title">SpaceX</string>
+    <string name="apod_list_categoty_title">10 Top Images</string>
+    <string name="credit">Image Credit:</string>
+    <string name="no_image_available">No Image Available</string>
 
 </resources>

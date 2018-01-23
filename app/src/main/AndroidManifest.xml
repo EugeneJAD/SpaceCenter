@@ -7,59 +7,68 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
+        android:name=".SpaceCenterApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".ui.splash.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name=".ui.main.MainActivity"
+                  android:label="@string/app_name"
+                  android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity
-            android:name=".ViewPagerActivity"
+            android:name=".ui.twitter.TwitterActivity"
             android:label="@string/twitter_news_title"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eugene.spacecenter.MainActivity"/>
+                android:value="com.eugene.spacecenter.ui.main.MainActivity"/>
         </activity>
         <activity
-            android:name=".SolarSystemActivity"
+            android:name=".ui.solar.SolarSystemActivity"
             android:label="@string/solar_system_page_title"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eugene.spacecenter.MainActivity"/>
+                android:value="com.eugene.spacecenter.ui.main.MainActivity"/>
         </activity>
         <activity
-            android:name=".APODtodayActivity"
+            android:name=".ui.apod.APODtodayActivity"
             android:label="@string/apod_page_title"
-            android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eugene.spacecenter.MainActivity"/>
+                android:value="com.eugene.spacecenter.ui.main.MainActivity"/>
         </activity>
         <activity
-            android:name=".SoundsActivity"
+            android:name=".ui.sounds.SoundsActivity"
             android:label="@string/sounds_page_title"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eugene.spacecenter.MainActivity"/>
+                android:value="com.eugene.spacecenter.ui.main.MainActivity"/>
         </activity>
         <activity
-            android:name=".APODRecyclerViewActivity"
-            android:label="@string/apod_list_page_title"
+            android:name=".ui.apods.APODsActivity"
+            android:label="@string/apod_list_categoty_title"
             android:launchMode="singleTop"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eugene.spacecenter.MainActivity"/>
+                android:value="com.eugene.spacecenter.ui.main.MainActivity"/>
         </activity>
 
         <meta-data
@@ -67,28 +76,22 @@
             android:value="5ee99fa70eb7558fefc97d8990c47e5bf972d134"/>
 
         <activity
-            android:name=".APODImageActivity"
-            android:label="@string/apod_hd_image_title"
-            android:parentActivityName=".APODtodayActivity">
+            android:name=".ui.solar.WikiSolarSystemActivity"
+            android:label="@string/wiki_page_title"
+            android:parentActivityName=".ui.solar.SolarSystemActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eugene.spacecenter.APODtodayActivity"/>
+                android:value="com.eugene.spacecenter.ui.solar.SolarSystemActivity"/>
         </activity>
         <activity
-            android:name=".WikiSolarSystemActivity"
-            android:label="@string/wiki_page_title"
-            android:parentActivityName=".SolarSystemActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eugene.spacecenter.SolarSystemActivity"/>
-        </activity>
-        <activity android:name=".AsteroidsActivity"
+            android:name=".ui.asteroids.AsteroidsActivity"
             android:label="@string/asteroids_threat"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ui.main.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value=".ui.main.MainActivity"/>
         </activity>
+
     </application>
 
 </manifest>

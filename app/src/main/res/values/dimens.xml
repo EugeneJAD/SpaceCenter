@@ -3,4 +3,25 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="image_size">88dp</dimen>
+
+    <!-- Images -->
+    <dimen name="logo_splash_size">200dp</dimen>
+
+    <!-- Screen margins -->
+    <dimen name="screen_min_margin">4dp</dimen>
+    <dimen name="screen_content_margin">8dp</dimen>
+    <dimen name="screen_edge_margin">16dp</dimen>
+    <dimen name="screen_right_edge_icons_margin">32dp</dimen>
+    <dimen name="screen_left_edge_content_margin">72dp</dimen>
+
+    <!-- Bars -->
+    <dimen name="status_bar_height">24dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+
+    <!-- List -->
+    <dimen name="list_item_standart_height">72dp</dimen>
+
+
+
+
 </resources>

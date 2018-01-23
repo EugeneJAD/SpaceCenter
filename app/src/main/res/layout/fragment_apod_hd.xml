@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout style="@style/FullScreenView"
+                    android:background="@color/grey_900">
+
+
+        <com.github.chrisbanes.photoview.PhotoView
+            android:id="@+id/apod_today_big_image"
+            style="@style/FullScreenView"/>
+
+        <ProgressBar
+            android:id="@+id/loading_image_indicator"
+            style="@style/WrappedView"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/download_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_get_app_white_36dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="@dimen/screen_edge_margin"
+            android:layout_marginBottom="@dimen/screen_edge_margin"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/error_image_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/screen_content_margin"
+            android:layout_centerInParent="true"
+            android:text="@string/no_image_available"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:gravity="center_horizontal"
+            android:textColor="@color/red"
+            android:visibility="gone"/>
+
+    </RelativeLayout>
+</layout>
+

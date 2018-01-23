@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="LogoSplash">
+        <item name="android:layout_width">@dimen/logo_splash_size</item>
+        <item name="android:layout_height">@dimen/logo_splash_size</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+</resources>
