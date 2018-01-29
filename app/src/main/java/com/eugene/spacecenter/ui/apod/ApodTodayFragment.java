@@ -99,9 +99,9 @@ public class ApodTodayFragment extends BaseFragment<FragmentApodTodayBinding,Apo
                     loadImage(apodApiResponse.body.getUrl());
                 } else {
                     if (isInternetConnected())
-                        SnackbarUtils.showSnackbar(binding.apodRoot, apodApiResponse.errorMessage);
+                        SnackbarUtils.showSnackbar(binding.getRoot(), apodApiResponse.errorMessage);
                     else
-                        SnackbarUtils.showSnackbar(binding.apodRoot, getString(R.string.no_internet_connection));
+                        SnackbarUtils.showSnackbar(binding.getRoot(), getString(R.string.no_internet_connection));
                     binding.loadingImageIndicator.setVisibility(View.GONE);
                 }
             }

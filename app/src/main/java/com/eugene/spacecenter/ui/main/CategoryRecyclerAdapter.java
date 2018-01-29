@@ -15,9 +15,9 @@ import com.eugene.spacecenter.ui.base.DataBoundListAdapter;
 
 public class CategoryRecyclerAdapter extends DataBoundListAdapter<Category,ListItemCategoryBinding> {
 
-    private MainMenuItemClickCallback clickCallback;
+    private MainMenuItemClickListener clickCallback;
 
-    public CategoryRecyclerAdapter(MainMenuItemClickCallback clickCallback) {
+    public CategoryRecyclerAdapter(MainMenuItemClickListener clickCallback) {
         this.clickCallback = clickCallback;
     }
 
@@ -38,7 +38,7 @@ public class CategoryRecyclerAdapter extends DataBoundListAdapter<Category,ListI
     @Override
     protected boolean areContentsTheSame(Category oldItem, Category newItem) {return false;}
 
-    public interface MainMenuItemClickCallback {
+    public interface MainMenuItemClickListener {
         void onItemClick(int categoryId);
     }
 

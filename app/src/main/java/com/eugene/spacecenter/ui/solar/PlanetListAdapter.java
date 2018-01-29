@@ -1,50 +1,42 @@
 package com.eugene.spacecenter.ui.solar;
 
-import android.app.Activity;
+
+import android.databinding.DataBindingUtil;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.eugene.spacecenter.R;
 import com.eugene.spacecenter.data.models.Planet;
+import com.eugene.spacecenter.databinding.ListItemSolarBinding;
+import com.eugene.spacecenter.ui.base.DataBoundListAdapter;
 
-import java.util.List;
+public class PlanetListAdapter extends DataBoundListAdapter<Planet,ListItemSolarBinding>{
+
+    private SolarObjectClickListener clickCallback;
 
 
-/**
- * Created by Администратор on 18.09.2016.
- */
-public class PlanetListAdapter extends ArrayAdapter<Planet>{
-
-    public PlanetListAdapter(Activity context, List<Planet> planetLists) {
-        super(context, 0, planetLists);
+    public PlanetListAdapter(SolarObjectClickListener clickCallback) {
+        this.clickCallback = clickCallback;
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    protected ListItemSolarBinding createBinding(ViewGroup parent) {
+        ListItemSolarBinding binding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()),
+                R.layout.list_item_solar,parent,false);
+        binding.solarItemMoreButton.setOnClickListener(view -> clickCallback.onItemClick(binding.getPlanet()));
+        return binding;
+    }
 
-        View listItemView = convertView;
-        if(listItemView == null) {
-            listItemView = LayoutInflater.from(getContext()).inflate(
-                    R.layout.list_item_planet, parent, false);
-        }
+    @Override
+    protected void bind(ListItemSolarBinding binding, Planet item) {binding.setPlanet(item);}
 
-        Planet currentItem = getItem(position);
+    @Override
+    protected boolean areItemsTheSame(Planet oldItem, Planet newItem) {return false;}
 
-        ImageView imagePlanet = (ImageView)listItemView.findViewById(R.id.image_planet);
-        imagePlanet.setImageResource(currentItem.getImageResId());
+    @Override
+    protected boolean areContentsTheSame(Planet oldItem, Planet newItem) {return false;}
 
-        TextView planetNameView = (TextView)listItemView.findViewById(R.id.planet_name);
-        planetNameView.setText(currentItem.getObject());
-
-        TextView planetInfoView = (TextView)listItemView.findViewById(R.id.planet_description);
-        planetInfoView.setText(currentItem.getDescription());
-
-        return listItemView;
-
-
+    public interface SolarObjectClickListener {
+        void onItemClick(Planet planet);
     }
 }

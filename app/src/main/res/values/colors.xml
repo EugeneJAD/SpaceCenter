@@ -23,11 +23,23 @@
 
     <color name="grey_900">#212121</color>
     <color name="grey_800">#424242</color>
+    <color name="grey_600_transparent">#66757575</color>
+
+    <color name="yellow_700">#FBC02D</color>
+    <color name="yellow_dark">#AC9100</color>
+    AC9100
 
     <color name="red">#C62828</color>
+
     <color name="green">#2E7D32</color>
+    <color name="green_700">#388E3C</color>
 
+    <color name="cyan_900">#006064</color>
+    <color name="cyan_800">#00838F</color>
 
+    <color name="purple_700">#7B1FA2</color>
+
+    <color name="pink_800">#AD1457</color>
 
 
 

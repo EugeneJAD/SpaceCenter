@@ -1,6 +1,6 @@
 package com.eugene.spacecenter.data.models;
 
-import android.support.annotation.ColorInt;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.DrawableRes;
 
 /**
@@ -11,13 +11,13 @@ public class Category {
     private int id;
     private int imageResId;
     private int name;
-    private int bgColorId;
+    private Drawable rippleDrawable;
 
-    public Category(int id, @DrawableRes int imageResId, @ColorInt int bgResId, int name) {
+    public Category(int id, @DrawableRes int imageResId, Drawable rippleDrawable, int name) {
         this.id = id;
         this.imageResId = imageResId;
         this.name = name;
-        this.bgColorId = bgResId;
+        this.rippleDrawable = rippleDrawable;
     }
 
     public int getId() {return id;}
@@ -29,6 +29,12 @@ public class Category {
     public int getName() {return name;}
     public void setName(int name) {this.name = name;}
 
-    public int getBgColorId() {return bgColorId;}
-    public void setBgColorId(int bgColorId) {this.bgColorId = bgColorId;}
+    public Drawable getRippleDrawable() {
+        return rippleDrawable;
+    }
+
+    public void setRippleDrawable(Drawable rippleDrawable) {
+        this.rippleDrawable = rippleDrawable;
+    }
+
 }

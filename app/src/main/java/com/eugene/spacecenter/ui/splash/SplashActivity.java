@@ -38,11 +38,6 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding,SplashAct
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
 
-//        MobileAds.initialize(getApplicationContext(), getString(R.string.admob_app_id));
-
-//        TwitterAuthConfig authConfig = new TwitterAuthConfig(getString(R.string.twitter_key), getString(R.string.twitter_secret));
-//        Fabric.with(this, new Twitter(authConfig));
-
         TwitterConfig config = new TwitterConfig.Builder(this)
                 .logger(new DefaultLogger(Log.DEBUG))
                 .twitterAuthConfig(new TwitterAuthConfig(getString(R.string.twitter_key), getString(R.string.twitter_secret)))

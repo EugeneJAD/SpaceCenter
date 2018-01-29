@@ -16,6 +16,8 @@ import javax.inject.Inject;
 
 public class NavigationController implements Navigator{
 
+    public static final String FRAGMENT_TAG = "content";
+
     private final FragmentActivity activity;
     private final FragmentManager fragmentManager;
 
@@ -51,14 +53,21 @@ public class NavigationController implements Navigator{
     }
 
     @Override
-    public void replaceFragmentBackStack(int containerId, @NonNull Fragment fragment, Bundle args, String backstackTag) {
-        replaceFragmentNavigation(containerId,fragment,null,args,true,fragment.getClass().getSimpleName(),
+    public void replaceFragment(int containerId, @NonNull Fragment fragment, Bundle args, String fragmentTag) {
+        replaceFragmentNavigation(containerId,fragment,fragmentTag,args,false,null,
                 null,null,null,null);
     }
 
     @Override
-    public void replaceFragmentBackStack(int containerId, @NonNull Fragment fragment, @NonNull String fragmentTag, Bundle args, String backstackTag, int enterAnimation, int exitAnimation, int popEnterAnimation, int popExitAnimation) {
-        replaceFragmentNavigation(containerId,fragment,null,args,true,fragment.getClass().getSimpleName(),
+    public void replaceFragmentBackStack(int containerId, @NonNull Fragment fragment,@NonNull String fragmentTag, Bundle args, String backstackTag) {
+        replaceFragmentNavigation(containerId,fragment,fragmentTag,args,true,fragment.getClass().getSimpleName(),
+                null,null,null,null);
+    }
+
+    @Override
+    public void replaceFragmentBackStack(int containerId, @NonNull Fragment fragment, @NonNull String fragmentTag, Bundle args, String backstackTag,
+                                         int enterAnimation, int exitAnimation, int popEnterAnimation, int popExitAnimation) {
+        replaceFragmentNavigation(containerId,fragment,fragmentTag,args,true,fragment.getClass().getSimpleName(),
                 enterAnimation,exitAnimation,popEnterAnimation,popExitAnimation);
     }
 
@@ -67,6 +76,18 @@ public class NavigationController implements Navigator{
         dialogFragment.show(activity.getSupportFragmentManager(), dialogFragment.getTag());
     }
 
+    protected void clearBackStack() {
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            fragmentManager.popBackStack(NavigationController.FRAGMENT_TAG, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+    }
+
+    protected final void popupBackStack(){
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            fragmentManager.popBackStack();
+        }
+    }
 
     private void startActivityNavigation(@NonNull Class<? extends Activity> activityClass, Bundle args, Integer requestCode){
         Intent intent = new Intent(activity, activityClass);
@@ -110,7 +131,5 @@ public class NavigationController implements Navigator{
     private Fragment getCurrentFragment(@IdRes int containerId) {
         return activity.getSupportFragmentManager().findFragmentById(containerId);
     }
-
-
 
 }

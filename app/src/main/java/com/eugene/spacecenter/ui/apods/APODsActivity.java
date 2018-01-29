@@ -25,7 +25,7 @@ import dagger.android.support.HasSupportFragmentInjector;
 import static java.lang.System.currentTimeMillis;
 
 public class APODsActivity extends BaseActivity<ActivityApodrecyclerViewBinding,ApodsActivityViewModel>
-        implements HasSupportFragmentInjector, ApodRVAdapter.ApodItemClickCallback{
+        implements HasSupportFragmentInjector, ApodRVAdapter.ApodItemClickListener {
 
     @Inject
     DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;

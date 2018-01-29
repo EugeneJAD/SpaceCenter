@@ -6,6 +6,7 @@
 
     <!-- Images -->
     <dimen name="logo_splash_size">200dp</dimen>
+    <dimen name="solar_item_image_size">80dp</dimen>
 
     <!-- Screen margins -->
     <dimen name="screen_min_margin">4dp</dimen>

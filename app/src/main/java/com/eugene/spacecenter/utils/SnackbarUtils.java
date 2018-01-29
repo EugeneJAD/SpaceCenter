@@ -3,17 +3,18 @@ package com.eugene.spacecenter.utils;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
-/**
- * Created by E.Iatsenko on 25.12.2017.
- */
+import com.eugene.spacecenter.R;
 
 public class SnackbarUtils {
 
-    public static void showSnackbar(View v, String snackbarText) {
-        if (v == null || snackbarText == null) {
+    public static void showSnackbar(View root, String snackbarText) {
+        if (root == null || snackbarText == null) {
             return;
         }
-        Snackbar.make(v, snackbarText, Snackbar.LENGTH_LONG).show();
+        Snackbar snackbar = Snackbar.make(root, snackbarText, Snackbar.LENGTH_LONG);
+        View sbView = snackbar.getView();
+        sbView.setBackgroundColor(root.getContext().getResources().getColor(R.color.yellow_dark));
+        snackbar.show();
     }
 
 }

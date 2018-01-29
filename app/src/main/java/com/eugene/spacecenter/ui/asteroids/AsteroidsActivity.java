@@ -42,10 +42,6 @@ public class AsteroidsActivity extends AppCompatActivity implements LoaderManage
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_asteroids);
 
-//        AdView mAdView = (AdView) findViewById(R.id.adView);
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        mAdView.loadAd(adRequest);
-
         TextView noInternetMessage = (TextView) findViewById(R.id.no_internet_connection_message);
         noInformationMassage = (TextView) findViewById(R.id.no_information_found);
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);

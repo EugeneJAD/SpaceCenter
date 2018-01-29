@@ -19,7 +19,8 @@ public interface Navigator {
     void startActivityForResult(@NonNull Class<? extends Activity> activityClass, int requestCode);
 
     void replaceFragment(@IdRes int containerId, @NonNull Fragment fragment, Bundle args);
-    void replaceFragmentBackStack(@IdRes int containerId, @NonNull Fragment fragment, Bundle args, String backstackTag);
+    void replaceFragment(int containerId, @NonNull Fragment fragment, Bundle args, String fragmentTag);
+    void replaceFragmentBackStack(@IdRes int containerId, @NonNull Fragment fragment, @NonNull String fragmentTag, Bundle args, String backstackTag);
     void replaceFragmentBackStack(@IdRes int containerId, @NonNull Fragment fragment, @NonNull String fragmentTag, Bundle args, String backstackTag,
                                           @AnimRes int enterAnimation, @AnimRes int exitAnimation, @AnimRes int popEnterAnimation, @AnimRes int popExitAnimation);
 

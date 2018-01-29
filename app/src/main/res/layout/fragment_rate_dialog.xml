@@ -1,0 +1,68 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/dialog_bg"
+            android:layout_width="300dp"
+            android:layout_height="350dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/space_dialog_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Text.Title"
+            android:layout_marginEnd="@dimen/screen_edge_margin"
+            android:layout_marginStart="@dimen/screen_edge_margin"
+            android:layout_marginTop="72dp"
+            android:text="@string/rate_sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/dialog_bg"/>
+
+        <TextView
+            android:id="@+id/dialog_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/screen_edge_margin"
+            android:layout_marginStart="@dimen/screen_edge_margin"
+            android:layout_marginTop="@dimen/screen_right_edge_icons_margin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle"
+            android:textColor="@color/secondaryTextColor"
+            android:textAlignment="center"
+            android:text="@string/rate_dialog_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dialog_title"/>
+
+        <Button
+            android:id="@+id/button_cancel"
+            style="@style/Button.RateDialog"
+            android:layout_marginBottom="@dimen/screen_right_edge_icons_margin"
+            android:layout_marginStart="@dimen/screen_right_edge_icons_margin"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:id="@+id/button_rate"
+            style="@style/Button.RateDialog"
+            android:layout_marginBottom="@dimen/screen_right_edge_icons_margin"
+            android:layout_marginEnd="@dimen/screen_right_edge_icons_margin"
+            android:text="@string/rate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

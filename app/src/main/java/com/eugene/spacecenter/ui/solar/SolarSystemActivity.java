@@ -1,46 +1,39 @@
 package com.eugene.spacecenter.ui.solar;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.support.v7.widget.Toolbar;
 
 import com.eugene.spacecenter.R;
-import com.eugene.spacecenter.data.models.Planet;
-import com.eugene.spacecenter.utils.JsonUtils;
+import com.eugene.spacecenter.ui.base.AppNavigator;
 
-public class SolarSystemActivity extends AppCompatActivity {
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.HasSupportFragmentInjector;
+
+public class SolarSystemActivity extends AppCompatActivity implements HasSupportFragmentInjector {
+
+    @Inject DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
+
+    @Inject AppNavigator appNavigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_solar_system);
 
-        final PlanetListAdapter adapter = new PlanetListAdapter(this, JsonUtils.getAllSolarObjects(this));
+        Toolbar toolbar = findViewById(R.id.solar_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
-        ListView listView = (ListView)findViewById(R.id.list_solar_system);
-
-        View loadingIndicator = findViewById(R.id.loading_indicator);
-        listView.setEmptyView(loadingIndicator);
-
-        listView.setAdapter(adapter);
-
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Planet current = adapter.getItem(position);
-
-                Intent intent = new Intent(SolarSystemActivity.this,WikiSolarSystemActivity.class);
-                intent.putExtra("url",current.getUrl());
-                startActivity(intent);
-
-            }
-        });
-
-
+        if(savedInstanceState==null)
+            appNavigator.navigateToSolarListFragment(null);
     }
+
+    @Override
+    public AndroidInjector<Fragment> supportFragmentInjector() {return dispatchingAndroidInjector;}
 }

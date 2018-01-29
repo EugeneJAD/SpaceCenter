@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProvider;
 import com.eugene.spacecenter.ui.apod.ApodFragmentViewModel;
 import com.eugene.spacecenter.ui.apods.ApodsActivityViewModel;
 import com.eugene.spacecenter.ui.main.MainActivityViewModel;
+import com.eugene.spacecenter.ui.solar.SolarFragmentViewModel;
 import com.eugene.spacecenter.ui.splash.SplashActivityViewModel;
 import com.eugene.spacecenter.ui.splash.SplashFragmentViewModel;
 import com.eugene.spacecenter.viewmodel.SpaceCenterViewModelFactory;
@@ -41,6 +42,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ApodsActivityViewModel.class)
     abstract ViewModel bindApodsActivityViewModel(ApodsActivityViewModel apodsActivityViewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SolarFragmentViewModel.class)
+    abstract ViewModel bindSolarFragmentViewModel(SolarFragmentViewModel solarFragmentViewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(SpaceCenterViewModelFactory factory);

@@ -1,11 +1,10 @@
 package com.eugene.spacecenter.utils;
 
 import android.text.TextUtils;
-import android.util.Log;
 
+import com.eugene.spacecenter.R;
 import com.eugene.spacecenter.data.models.Apod;
 import com.eugene.spacecenter.data.models.Asteroid;
-import com.eugene.spacecenter.R;
 import com.eugene.spacecenter.data.models.SoundBox;
 
 import org.json.JSONArray;
@@ -46,7 +45,7 @@ public final class QueryUtils {
             jsonResponse = makeHTTPConnection(url);
         }
         catch (IOException e) {
-            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
+            e.printStackTrace();
         }
 
         return extractAPODDataFromJSON(jsonResponse);
@@ -58,8 +57,6 @@ public final class QueryUtils {
             return null;
         }
 
-        Log.v(LOG_TAG, "JSON results "+jsonResponse);
-
         Apod apod =null;
 
         try {
@@ -68,7 +65,7 @@ public final class QueryUtils {
                     root.getString("title"),root.getString("url"),root.getString("hdurl"));
 
         } catch (JSONException e) {
-            Log.e(LOG_TAG, "Problem parsing the APOD JSON results", e);
+            e.printStackTrace();
         }
 
         return apod;
@@ -97,7 +94,7 @@ public final class QueryUtils {
             jsonResponse=fetchJSONdata(inputStream);
 
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Error response code ",e);
+            e.printStackTrace();
         }
         finally {
             if(urlConnection!=null)
@@ -151,7 +148,7 @@ public final class QueryUtils {
             jsonSoundResponse = makeHTTPConnection(jsonUrl);
         }
         catch (IOException e) {
-            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
+            e.printStackTrace();
         }
 
         List<SoundBox> soundBoxes = extractSoundsDataFromJSON(jsonSoundResponse);
@@ -184,7 +181,7 @@ public final class QueryUtils {
 
         }
         catch (JSONException e) {
-            Log.e(LOG_TAG, "Problem parsing the earthquake JSON results", e);
+            e.printStackTrace();
         }
 
         return soundBoxes;
@@ -199,7 +196,7 @@ public final class QueryUtils {
         try {
             jsonAsteroidResponse = makeHTTPConnection(jsonURL);
         } catch (IOException e) {
-            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
+            e.printStackTrace();
         }
 
         return extractAsteroidDataFromJSON(jsonAsteroidResponse, startDate, endDate);
@@ -213,8 +210,6 @@ public final class QueryUtils {
         }
 
         List<Asteroid> asteroids = new ArrayList<>();
-
-        Log.i(LOG_TAG,"JSON STRING: "+jsonAsteroidResponse);
 
         try {
 
@@ -243,7 +238,7 @@ public final class QueryUtils {
                             getAsteroidImage()));
                 }
             }  catch (JSONException e) {
-                Log.e(LOG_TAG, "Problem parsing the asteroids JSON results for End Date "+endDate, e);
+                e.printStackTrace();
             }
 
             try {
@@ -270,13 +265,11 @@ public final class QueryUtils {
                             getAsteroidImage()));
                 }
             }catch (JSONException e) {
-            Log.e(LOG_TAG, "Problem parsing the asteroids JSON results for Start Date "+startDate, e);
-        }
-
-
+                e.printStackTrace();
+            }
         }
         catch (JSONException e) {
-            Log.e(LOG_TAG, "Problem parsing the asteroids JSON results", e);
+            e.printStackTrace();
         }
 
         return asteroids;

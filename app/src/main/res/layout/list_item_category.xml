@@ -10,33 +10,36 @@
             type="com.eugene.spacecenter.data.models.Category"/>
     </data>
 
-<LinearLayout
+<FrameLayout
     android:id="@+id/category_item_root"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="@dimen/screen_content_margin"
-    android:orientation="vertical"
-    android:background="@{category.bgColorId}">
+    style="@style/FullWidthView">
 
-    <android.support.v7.widget.AppCompatImageView
-        android:id="@+id/image_category"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
-        app:imageFromRes="@{category.imageResId}"/>
+    <LinearLayout
+        android:id="@+id/category_item_container"
+        style="@style/FullWidthView"
+        android:paddingTop="@dimen/screen_content_margin"
+        android:orientation="vertical"
+        android:background="@{category.rippleDrawable}">
 
-    <TextView
-        android:id="@+id/category_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/screen_min_margin"
-        android:layout_marginBottom="@dimen/screen_edge_margin"
-        android:textAppearance="?android:textAppearanceSmall"
-        android:maxLines="2"
-        android:layout_gravity="center_horizontal"
-        android:textColor="@color/white"
-        android:text="@{category.name}"
-        tools:text="ESA"/>
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/image_category"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            app:imageFromRes="@{category.imageResId}"/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/category_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/screen_min_margin"
+            android:layout_marginBottom="@dimen/screen_edge_margin"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:maxLines="2"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/white"
+            android:text="@{category.name}"
+            tools:text="ESA"/>
+    </LinearLayout>
+</FrameLayout>
 </layout>

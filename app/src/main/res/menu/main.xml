@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_rate"
+        android:title="@string/menu_rate_app"
+        android:icon="@drawable/ic_star_border_24dp"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/action_share"
+        android:title="@string/menu_share_title"
+        app:actionProviderClass="android.support.v7.widget.ShareActionProvider"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_send"
+        android:title="@string/menu_contact_us"
+        app:showAsAction="never"/>
+</menu>

@@ -13,8 +13,6 @@ import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Scanner;
 
-import timber.log.Timber;
-
 /**
  * Created by Eugene on 23.01.2018.
  */
@@ -36,7 +34,6 @@ public class JsonUtils {
                 e.printStackTrace();
             }
 
-            Timber.d("json string = %s", json);
             if(json.isEmpty())
                 return null;
 
@@ -46,8 +43,6 @@ public class JsonUtils {
             for(Planet planet:planets){
                 planet.setImageResId(getImageRes(planet.getId()));
             }
-
-            Timber.d("List<Planet>planets.size() = %s", planets.size());
 
             return planets;
         }

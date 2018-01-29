@@ -15,5 +15,4 @@ public class ApodTodayActivityModule {
 
     @Provides
     FragmentActivity provideActivity(APODtodayActivity activity) {return activity;}
-
 }

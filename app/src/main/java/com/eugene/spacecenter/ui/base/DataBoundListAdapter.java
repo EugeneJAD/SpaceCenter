@@ -94,9 +94,9 @@ public abstract class DataBoundListAdapter<T, V extends ViewDataBinding>
                     }
                     items = update;
                     diffResult.dispatchUpdatesTo(DataBoundListAdapter.this);
-                    notifyDataSetChanged();
                 }
             }.execute();
+            notifyDataSetChanged();
         }
     }
 

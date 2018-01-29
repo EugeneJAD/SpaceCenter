@@ -16,9 +16,9 @@ import com.eugene.spacecenter.utils.Objects;
 
 public class ApodRVAdapter extends DataBoundListAdapter<Apod,ListItemApodBinding> {
 
-    private ApodItemClickCallback clickCallback;
+    private ApodItemClickListener clickCallback;
 
-    public ApodRVAdapter(ApodItemClickCallback clickCallback) {
+    public ApodRVAdapter(ApodItemClickListener clickCallback) {
         this.clickCallback = clickCallback;
     }
 
@@ -39,5 +39,5 @@ public class ApodRVAdapter extends DataBoundListAdapter<Apod,ListItemApodBinding
     @Override
     protected boolean areContentsTheSame(Apod oldItem, Apod newItem) {return Objects.equals(oldItem.getUrl(),newItem.getUrl());}
 
-    public interface ApodItemClickCallback {void onItemClick(String date);}
+    public interface ApodItemClickListener {void onItemClick(String date);}
 }

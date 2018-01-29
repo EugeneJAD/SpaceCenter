@@ -49,7 +49,6 @@ public class ApodsActivityViewModel extends ViewModel{
     public LiveData<ApiResponse<Apod>> getApod() {return apod;}
 
     public List<Apod> getApods() {return apods;}
-    public void addItemToApods(Apod apod){apods.add(apod);}
 
     public long getDateInMillis() {return dateInMillis;}
     public void setDateInMillis(long dateInMillis) {this.dateInMillis = dateInMillis;}

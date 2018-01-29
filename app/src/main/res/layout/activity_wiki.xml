@@ -1,0 +1,13 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              style="@style/FullScreenView"
+              android:background="@color/grey_900">
+
+    <ProgressBar
+        style="@style/WrappedView"
+        android:layout_gravity="center"/>
+
+    <WebView
+        android:id="@+id/web_view"
+        style="@style/FullScreenView"/>
+
+</FrameLayout>

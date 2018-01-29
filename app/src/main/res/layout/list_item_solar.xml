@@ -1,0 +1,75 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="planet"
+            type="com.eugene.spacecenter.data.models.Planet"/>
+    </data>
+
+<android.support.constraint.ConstraintLayout
+    style="@style/FullWidthView"
+    android:background="@color/grey_900"
+    android:paddingBottom="@dimen/screen_right_edge_icons_margin">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="112dp"
+        android:background="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/solar_item_image"
+        android:layout_width="@dimen/solar_item_image_size"
+        android:layout_height="@dimen/solar_item_image_size"
+        android:layout_marginStart="@dimen/screen_edge_margin"
+        android:layout_marginTop="@dimen/screen_edge_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/earth"
+        app:imageFromRes="@{planet.imageResId}"/>
+
+    <TextView
+        android:id="@+id/solar_item_title"
+        style="@style/WrappedView"
+        android:layout_marginStart="20dp"
+        android:text="@{planet.object}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@color/yellow_dark"
+        app:layout_constraintStart_toEndOf="@+id/solar_item_image"
+        app:layout_constraintTop_toBottomOf="@+id/solar_item_more_button"
+        tools:text="Earth"/>
+
+    <TextView
+        android:id="@+id/solar_item_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/screen_edge_margin"
+        android:layout_marginStart="@dimen/screen_edge_margin"
+        android:layout_marginTop="@dimen/screen_right_edge_icons_margin"
+        android:text="@{planet.description}"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Subtitle"
+        android:textColor="@color/secondaryTextColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/solar_item_title"
+        tools:text="TextView TextView TextView TextView TextView TextView TextView TextView"/>
+
+    <Button
+        android:id="@+id/solar_item_more_button"
+        style="@style/Button.Standard"
+        android:layout_marginEnd="@dimen/screen_edge_margin"
+        android:layout_marginTop="@dimen/screen_edge_margin"
+        android:background="@drawable/read_button_bg"
+        android:text="@string/read_more"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+</android.support.constraint.ConstraintLayout>
+</layout>
+
+
+

@@ -43,16 +43,11 @@
 
                     <Button
                         android:id="@+id/set_date"
-                        android:layout_width="wrap_content"
-                        style = "@style/Base.Widget.AppCompat.Button"
-                        android:background="@color/category_back_2"
+                        style="@style/Button.Standard"
+                        android:background="@drawable/date_button_bg"
                         android:layout_marginEnd="@dimen/screen_edge_margin"
-                        android:layout_height="wrap_content"
-                        android:paddingStart="@dimen/screen_edge_margin"
-                        android:paddingEnd="@dimen/screen_edge_margin"
                         android:layout_alignParentEnd="true"
-                        android:text="@string/set_date"
-                        android:textColor="@color/white"/>
+                        android:text="@string/set_date"/>
 
 
                 </RelativeLayout>
@@ -61,22 +56,18 @@
                     android:id="@+id/title_apod"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    style="@style/Text.Title"
                     android:layout_margin="@dimen/screen_edge_margin"
-                    android:textStyle="bold"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textAlignment="center"
-                    android:textColor="@color/textColor"
                     tools:text="Clouds Near Jupiter's South Pole from Juno"
                     android:text="@{apod.title}"/>
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <RelativeLayout style="@style/WrappedView">
 
                     <ProgressBar
                         android:id="@+id/loading_image_indicator"
                         style="@style/Widget.AppCompat.ProgressBar"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:visibility="visible"/>

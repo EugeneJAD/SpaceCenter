@@ -8,6 +8,7 @@ import com.eugene.spacecenter.data.repository.Repository;
 import com.eugene.spacecenter.ui.apod.ApodFragmentViewModel;
 import com.eugene.spacecenter.ui.apods.ApodsActivityViewModel;
 import com.eugene.spacecenter.ui.main.MainActivityViewModel;
+import com.eugene.spacecenter.ui.solar.SolarFragmentViewModel;
 import com.eugene.spacecenter.ui.splash.SplashActivityViewModel;
 import com.eugene.spacecenter.ui.splash.SplashFragmentViewModel;
 import com.eugene.spacecenter.utils.AppConstants;
@@ -76,4 +77,7 @@ class AppModule {
 
     @Provides
     Class<ApodsActivityViewModel> provideApodsActivityViewModel(){return ApodsActivityViewModel.class;}
+
+    @Provides
+    Class<SolarFragmentViewModel> provideSolarFragmentViewModel(){return SolarFragmentViewModel.class;}
 }

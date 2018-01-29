@@ -4,6 +4,7 @@ package com.eugene.spacecenter.ui.apod;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import com.eugene.spacecenter.R;
 import com.eugene.spacecenter.ui.base.AppNavigator;
@@ -44,5 +45,16 @@ public class APODtodayActivity extends AppCompatActivity implements HasSupportFr
     @Override
     public AndroidInjector<Fragment> supportFragmentInjector() {
         return dispatchingAndroidInjector;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==android.R.id.home) {
+                if (getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof ApodHdFragment) {
+                getSupportFragmentManager().popBackStack();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

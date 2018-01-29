@@ -40,16 +40,11 @@
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/scroll"
+        <com.eugene.spacecenter.ui.base.GridRecyclerView
+            android:id="@+id/main_rv"
             style="@style/FullScreenView"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/main_rv"
-                style="@style/FullScreenView"/>
-
-        </android.support.v4.widget.NestedScrollView>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:clipToPadding="false"/>
 
     </android.support.design.widget.CoordinatorLayout>
 

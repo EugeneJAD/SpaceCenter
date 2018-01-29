@@ -22,7 +22,8 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewMode
     protected B binding;
     protected V viewModel;
 
-    @Inject ViewModelProvider.Factory viewModelFactory;
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
 
     protected final void setAndBindContentView(@LayoutRes int layoutResID) {
@@ -30,5 +31,4 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewMode
         binding = DataBindingUtil.setContentView(this, layoutResID);
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(viewModelClass);
     }
-
 }
