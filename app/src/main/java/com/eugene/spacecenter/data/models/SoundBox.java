@@ -15,9 +15,11 @@ public class SoundBox {
 
     public SoundBox(String title, String streamUrl, long duration, String downloadUrl){
         this.title=title;
-        this.streamUrl=streamUrl+"?client_id="+AppConstants.SOUND_CLOUD_ID;
+        this.streamUrl=streamUrl+"?client_id=";
+//                +AppConstants.SOUND_CLOUD_ID;
         this.duration=duration;
-        this.downloadUrl=downloadUrl+"?client_id="+AppConstants.SOUND_CLOUD_ID;
+        this.downloadUrl=downloadUrl+"?client_id=";
+//                +AppConstants.SOUND_CLOUD_ID;
     }
 
     public String getTitle(){return title;}

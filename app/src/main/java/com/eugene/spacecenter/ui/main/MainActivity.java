@@ -92,7 +92,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding,MainActivityV
         categoryArrayList.add(new Category(4,R.drawable.ic_iss,getRippleDrawable(R.color.category_back_1, R.color.cyan_800), R.string.iss_categoty_title));
         categoryArrayList.add(new Category(5,R.drawable.ic_nasa,getRippleDrawable(R.color.category_back_2,R.color.pink_800), R.string.nasa_categoty_title));
         categoryArrayList.add(new Category(6,R.drawable.ic_earth,getRippleDrawable(R.color.category_back_3, R.color.purple_700), R.string.solar_system_page_title));
-        categoryArrayList.add(new Category(7,R.drawable.ic_alien,getRippleDrawable(R.color.category_back_4, R.color.green_700), R.string.sounds_categoty_title));
+//        categoryArrayList.add(new Category(7,R.drawable.ic_alien,getRippleDrawable(R.color.category_back_4, R.color.green_700), R.string.sounds_categoty_title));
         categoryArrayList.add(new Category(8,R.drawable.ic_spacex,getRippleDrawable(R.color.category_back_1, R.color.cyan_800), R.string.spacex_categoty_title));
         categoryArrayList.add(new Category(9,R.drawable.ic_planet_2,getRippleDrawable(R.color.category_back_2,R.color.pink_800), R.string.apod_list_categoty_title));
         return categoryArrayList;
